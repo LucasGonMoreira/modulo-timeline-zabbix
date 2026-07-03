@@ -2,7 +2,7 @@
 # Zabbix Timeline Module Installer
 
 echo "=========================================="
-echo "  Instalador do Módulo Timeline - Zabbix"
+echo "  Instalador do MÃ³dulo Timeline - Zabbix"
 echo "=========================================="
 echo ""
 
@@ -24,19 +24,19 @@ for dir in "${POSSIBLE_DIRS[@]}"; do
 done
 
 if [ -z "$ZABBIX_UI_DIR" ]; then
-    echo "Não foi possível detectar automaticamente o diretório do Zabbix UI."
+    echo "NÃ£o foi possÃ­vel detectar automaticamente o diretÃ³rio do Zabbix UI."
     read -p "Digite o caminho absoluto do Zabbix (ex: /usr/share/zabbix): " ZABBIX_UI_DIR
     if [ ! -d "$ZABBIX_UI_DIR/modules" ]; then
-        echo "Erro: O diretório '$ZABBIX_UI_DIR/modules' não existe."
+        echo "Erro: O diretÃ³rio '$ZABBIX_UI_DIR/modules' nÃ£o existe."
         exit 1
     fi
 fi
 
-echo "Diretório do Zabbix encontrado/definido em: $ZABBIX_UI_DIR"
+echo "DiretÃ³rio do Zabbix encontrado/definido em: $ZABBIX_UI_DIR"
 MODULES_DIR="$ZABBIX_UI_DIR/modules"
 
 # Decode and extract module payload
-echo "Extraindo arquivos do módulo..."
+echo "Extraindo arquivos do mÃ³dulo..."
 PAYLOAD=$(cat << 'EOF'
 H4sIAAAAAAAAA+0ca2/iSHI+z6/oRaO1mSMMkJBIzGVyBJhJpJBEQOaxM8gyuBO8MTZrmzx2Nz/m
 dB9W9+E+ne4X5I9dVbcf7ReQbJKdnXVJUUx3V3W5qrq6qrrB1afU0E366tnjQQVgq15n/ysb1eh/
@@ -126,7 +126,7 @@ chmod -R 755 "$MODULES_DIR/timeline"
 
 echo ""
 echo "=========================================="
-echo " Configuração do Banco de Dados"
+echo " ConfiguraÃ§Ã£o do Banco de Dados"
 echo "=========================================="
 echo "Precisamos criar a tabela 'zbx_incident_timeline' no banco de dados do Zabbix."
 
@@ -134,15 +134,15 @@ read -p "Deseja configurar o banco de dados automaticamente agora? (s/n): " RUN_
 if [[ "$RUN_DB" == "s" || "$RUN_DB" == "S" ]]; then
     echo "1) MySQL / MariaDB"
     echo "2) PostgreSQL"
-    read -p "Qual é o seu banco de dados? (1 ou 2): " DB_TYPE
+    read -p "Qual Ã© o seu banco de dados? (1 ou 2): " DB_TYPE
 
     read -p "Host do banco de dados (ex: localhost): " DB_HOST
     DB_HOST=${DB_HOST:-localhost}
     read -p "Nome do banco de dados (ex: zabbix): " DB_NAME
     DB_NAME=${DB_NAME:-zabbix}
-    read -p "Usuário do banco de dados (ex: zabbix ou root): " DB_USER
+    read -p "UsuÃ¡rio do banco de dados (ex: zabbix ou root): " DB_USER
     DB_USER=${DB_USER:-zabbix}
-    read -p "Senha do banco de dados (deixe em branco se não houver): " DB_PASS
+    read -p "Senha do banco de dados (deixe em branco se nÃ£o houver): " DB_PASS
 
     if [ "$DB_TYPE" = "1" ]; then
         SQL_QUERY="CREATE TABLE IF NOT EXISTS zbx_incident_timeline (
@@ -190,10 +190,10 @@ if [[ "$RUN_DB" == "s" || "$RUN_DB" == "S" ]]; then
             echo "Aviso: Houve um erro ao criar a tabela no PostgreSQL."
         fi
     else
-        echo "Opção inválida."
+        echo "OpÃ§Ã£o invÃ¡lida."
     fi
 else
-    echo "Você optou por não criar a tabela automaticamente."
+    echo "VocÃª optou por nÃ£o criar a tabela automaticamente."
     echo "Por favor, rode o seguinte comando no seu banco de dados MySQL:"
     echo "CREATE TABLE IF NOT EXISTS zbx_incident_timeline ( timelineid BIGINT UNSIGNED NOT NULL, title VARCHAR(255) DEFAULT '' NOT NULL, description TEXT NOT NULL, incident_time BIGINT UNSIGNED NOT NULL, end_time BIGINT UNSIGNED DEFAULT 0 NOT NULL, status INT DEFAULT 0 NOT NULL, responsible VARCHAR(255) DEFAULT '' NOT NULL, PRIMARY KEY (timelineid) );"
     echo ""
@@ -203,11 +203,11 @@ fi
 
 echo ""
 echo "=========================================="
-echo " Instalação Concluída!"
+echo " InstalaÃ§Ã£o ConcluÃ­da!"
 echo "=========================================="
-echo "Para ativar o módulo no Zabbix:"
+echo "Para ativar o mÃ³dulo no Zabbix:"
 echo "1. Acesse o Zabbix via navegador."
-echo "2. Vá em Administração -> Geral -> Módulos (ou Administração -> Módulos)."
-echo "3. Clique em 'Scan directory' (Escanear diretório)."
-echo "4. O módulo 'Timeline' aparecerá. Clique em 'Enable' (Ativar)."
-echo "5. O menu 'Timeline' surgirá na aba Monitoring."
+echo "2. VÃ¡ em AdministraÃ§Ã£o -> Geral -> MÃ³dulos (ou AdministraÃ§Ã£o -> MÃ³dulos)."
+echo "3. Clique em 'Scan directory' (Escanear diretÃ³rio)."
+echo "4. O mÃ³dulo 'Timeline' aparecerÃ¡. Clique em 'Enable' (Ativar)."
+echo "5. O menu 'Timeline' surgirÃ¡ na aba Monitoring."
