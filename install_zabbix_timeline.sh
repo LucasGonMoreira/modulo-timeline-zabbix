@@ -2,7 +2,7 @@
 # Zabbix Timeline Module Installer
 
 echo "=========================================="
-echo "  Instalador do MÃ³dulo Timeline - Zabbix"
+echo "  Instalador do Módulo Timeline - Zabbix"
 echo "=========================================="
 echo ""
 
@@ -24,90 +24,100 @@ for dir in "${POSSIBLE_DIRS[@]}"; do
 done
 
 if [ -z "$ZABBIX_UI_DIR" ]; then
-    echo "NÃ£o foi possÃ­vel detectar automaticamente o diretÃ³rio do Zabbix UI."
+    echo "Não foi possível detectar automaticamente o diretório do Zabbix UI."
     read -p "Digite o caminho absoluto do Zabbix (ex: /usr/share/zabbix): " ZABBIX_UI_DIR
     if [ ! -d "$ZABBIX_UI_DIR/modules" ]; then
-        echo "Erro: O diretÃ³rio '$ZABBIX_UI_DIR/modules' nÃ£o existe."
+        echo "Erro: O diretório '$ZABBIX_UI_DIR/modules' não existe."
         exit 1
     fi
 fi
 
-echo "DiretÃ³rio do Zabbix encontrado/definido em: $ZABBIX_UI_DIR"
+echo "Diretório do Zabbix encontrado/definido em: $ZABBIX_UI_DIR"
 MODULES_DIR="$ZABBIX_UI_DIR/modules"
 
 # Decode and extract module payload
-echo "Extraindo arquivos do mÃ³dulo..."
+echo "Extraindo arquivos do módulo..."
 PAYLOAD=$(cat << 'EOF'
-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
+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
 EOF
 )
 
@@ -126,7 +136,7 @@ chmod -R 755 "$MODULES_DIR/timeline"
 
 echo ""
 echo "=========================================="
-echo " ConfiguraÃ§Ã£o do Banco de Dados"
+echo " Configuração do Banco de Dados"
 echo "=========================================="
 echo "Precisamos criar a tabela 'zbx_incident_timeline' no banco de dados do Zabbix."
 
@@ -134,15 +144,15 @@ read -p "Deseja configurar o banco de dados automaticamente agora? (s/n): " RUN_
 if [[ "$RUN_DB" == "s" || "$RUN_DB" == "S" ]]; then
     echo "1) MySQL / MariaDB"
     echo "2) PostgreSQL"
-    read -p "Qual Ã© o seu banco de dados? (1 ou 2): " DB_TYPE
+    read -p "Qual é o seu banco de dados? (1 ou 2): " DB_TYPE
 
     read -p "Host do banco de dados (ex: localhost): " DB_HOST
     DB_HOST=${DB_HOST:-localhost}
     read -p "Nome do banco de dados (ex: zabbix): " DB_NAME
     DB_NAME=${DB_NAME:-zabbix}
-    read -p "UsuÃ¡rio do banco de dados (ex: zabbix ou root): " DB_USER
+    read -p "Usuário do banco de dados (ex: zabbix ou root): " DB_USER
     DB_USER=${DB_USER:-zabbix}
-    read -p "Senha do banco de dados (deixe em branco se nÃ£o houver): " DB_PASS
+    read -p "Senha do banco de dados (deixe em branco se não houver): " DB_PASS
 
     if [ "$DB_TYPE" = "1" ]; then
         SQL_QUERY="CREATE TABLE IF NOT EXISTS zbx_incident_timeline (
@@ -160,10 +170,10 @@ if [[ "$RUN_DB" == "s" || "$RUN_DB" == "S" ]]; then
             MYSQL_CMD="$MYSQL_CMD -p\"$DB_PASS\""
         fi
         MYSQL_CMD="$MYSQL_CMD \"$DB_NAME\""
-        
+
         echo "Executando script SQL no MySQL/MariaDB..."
         eval "$MYSQL_CMD -e \"\$SQL_QUERY\""
-        
+
         if [ $? -eq 0 ]; then
             echo "Tabela criada com sucesso!"
         else
@@ -183,17 +193,17 @@ if [[ "$RUN_DB" == "s" || "$RUN_DB" == "S" ]]; then
         export PGPASSWORD="$DB_PASS"
         echo "Executando script SQL no PostgreSQL..."
         psql -U "$DB_USER" -h "$DB_HOST" -d "$DB_NAME" -c "$SQL_QUERY"
-        
+
         if [ $? -eq 0 ]; then
             echo "Tabela criada com sucesso!"
         else
             echo "Aviso: Houve um erro ao criar a tabela no PostgreSQL."
         fi
     else
-        echo "OpÃ§Ã£o invÃ¡lida."
+        echo "Opção inválida."
     fi
 else
-    echo "VocÃª optou por nÃ£o criar a tabela automaticamente."
+    echo "Você optou por não criar a tabela automaticamente."
     echo "Por favor, rode o seguinte comando no seu banco de dados MySQL:"
     echo "CREATE TABLE IF NOT EXISTS zbx_incident_timeline ( timelineid BIGINT UNSIGNED NOT NULL, title VARCHAR(255) DEFAULT '' NOT NULL, description TEXT NOT NULL, incident_time BIGINT UNSIGNED NOT NULL, end_time BIGINT UNSIGNED DEFAULT 0 NOT NULL, status INT DEFAULT 0 NOT NULL, responsible VARCHAR(255) DEFAULT '' NOT NULL, PRIMARY KEY (timelineid) );"
     echo ""
@@ -203,11 +213,11 @@ fi
 
 echo ""
 echo "=========================================="
-echo " InstalaÃ§Ã£o ConcluÃ­da!"
+echo " Instalação Concluída!"
 echo "=========================================="
-echo "Para ativar o mÃ³dulo no Zabbix:"
+echo "Para ativar o módulo no Zabbix:"
 echo "1. Acesse o Zabbix via navegador."
-echo "2. VÃ¡ em AdministraÃ§Ã£o -> Geral -> MÃ³dulos (ou AdministraÃ§Ã£o -> MÃ³dulos)."
-echo "3. Clique em 'Scan directory' (Escanear diretÃ³rio)."
-echo "4. O mÃ³dulo 'Timeline' aparecerÃ¡. Clique em 'Enable' (Ativar)."
-echo "5. O menu 'Timeline' surgirÃ¡ na aba Monitoring."
+echo "2. Vá em Administração -> Geral -> Módulos (ou Administração -> Módulos)."
+echo "3. Clique em 'Scan directory' (Escanear diretório)."
+echo "4. O módulo 'Timeline' aparecerá. Clique em 'Enable' (Ativar)."
+echo "5. O menu 'Timeline' surgirá na aba Monitoring."
