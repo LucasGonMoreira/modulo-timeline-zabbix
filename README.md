@@ -66,3 +66,20 @@
         responsible VARCHAR(255) DEFAULT '' NOT NULL,
         PRIMARY KEY (timelineid)
     );
+
+  ## 🗑️ Desinstalação
+
+  Caso deseje remover o módulo do seu ambiente Zabbix, utilize o script de desinstalação automatizado.
+
+  1. Baixe o script de desinstalação (se ainda não o possuir):
+     ```bash
+     # wget https://raw.githubusercontent.com/SEU-USUARIO/zabbix-timeline-module/main/uninstall_zabbix_timeline.sh
+     ```
+  2. Dê permissão de execução e inicie o script:
+     ```bash
+     chmod +x uninstall_zabbix_timeline.sh
+     ./uninstall_zabbix_timeline.sh
+     ```
+  3. O script fará:
+      • A remoção completa dos arquivos do módulo do diretório UI do Zabbix.
+      • Opcionalmente, a exclusão da tabela do banco de dados (Atenção: Isso apagará todo o histórico da timeline).
