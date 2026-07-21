@@ -27,7 +27,7 @@
 
     1. Baixe o script de instalação para o servidor do Zabbix Frontend:
        ```bash
-       # wget https://raw.githubusercontent.com/SEU-USUARIO/zabbix-timeline-module/main/install_zabbix_timeline.sh
+       # wget https://raw.githubusercontent.com/LucasGonMoreira/zabbix-timeline-module/main/install_zabbix_timeline.sh
 
   2. Dê permissão de execução e inicie o script:
     chmod +x install_zabbix_timeline.sh
@@ -73,7 +73,7 @@
 
   1. Baixe o script de desinstalação (se ainda não o possuir):
      ```bash
-     # wget https://raw.githubusercontent.com/SEU-USUARIO/zabbix-timeline-module/main/uninstall_zabbix_timeline.sh
+     # wget https://raw.githubusercontent.com/LucasGonMoreira/zabbix-timeline-module/main/uninstall_zabbix_timeline.sh
      ```
   2. Dê permissão de execução e inicie o script:
      ```bash
